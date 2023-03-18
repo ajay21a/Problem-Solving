@@ -1,0 +1,19 @@
+class Solution {
+    public ListNode rotateRight(ListNode head, int k) {
+        if( k==0 || head == null ) return head;
+        ListNode temp = head ; 
+        List<Integer> list = new ArrayList<>();
+            while(temp != null) {
+                list.add(temp.val);
+                temp = temp.next;
+            }
+            int len = list.size() , j = len-(k%len);
+                ListNode result = new ListNode(0); 
+                ListNode ret = result ;
+            while(len-->0) {
+                result.next = new ListNode(list.get(j++%list.size())) ;
+                result = result.next ; 
+            }
+        return ret.next;
+    }
+}
