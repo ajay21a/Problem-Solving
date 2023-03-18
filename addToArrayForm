@@ -1,0 +1,28 @@
+class Solution {
+    public List<Integer> addToArrayForm(int[] nums, int k) {
+        List<Integer> list = new ArrayList<>();
+        int carry = 0 , len = nums.length-1; 
+        while(k != 0 || len > -1 || carry > 0) {
+            if(k > 0) {
+                carry += k%10 ;
+                k /= 10;
+            }
+            if(len<0) {
+                list.add(carry%10);
+                carry = (carry)/10;
+            }
+            else if(nums[len]+carry <= 9) {
+                list.add(nums[len]+carry);
+                carry = 0 ;
+                len--;
+            }
+            else {
+                list.add((nums[len]+carry)%10);
+                carry = (nums[len]+carry)/10;
+                len--;
+            }
+        }
+        Collections.reverse(list);
+        return list;
+    }
+}
