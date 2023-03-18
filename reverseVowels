@@ -1,0 +1,19 @@
+class Solution {
+    public boolean vow(char a) {
+        a = Character.toLowerCase(a);
+        if(a == 'a' || a == 'e' || a == 'i' || a == 'o' || a == 'u') return true;
+        return false;
+    }
+    public String reverseVowels(String s) {
+        String result = "";
+        Stack<Character> stack = new Stack<>();
+        for(char i : s.toCharArray()) {
+            if(vow(i)) stack.push(i);
+        }
+        for(char i : s.toCharArray()) {
+            if(vow(i)) result+=stack.pop();
+            else result+=i;
+        }
+        return result;
+    }
+}
