@@ -1,0 +1,22 @@
+class Solution {
+    public String replaceWords(List<String> dictionary, String sentence) {
+        HashSet<String> set = new HashSet<>();
+        for(String i : dictionary) set.add(i);
+        String arr[] = sentence.split(" ");
+        int len = arr.length-1 , val = 0 ;
+        String a = "";
+        for(String i : arr) {
+            int flag = 1 ;
+            for(int index = 1 ; index < i.length() ; index++) {
+                if(set.contains(i.substring(0,index))) {
+                    a += i.substring(0,index) ;
+                    flag = 0 ;
+                    break ;
+                }
+            }
+            if(flag == 1) a+=i;
+            if(val++ != len) a+=" ";
+        }
+        return a;
+    }
+}
